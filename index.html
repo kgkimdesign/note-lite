@@ -227,8 +227,63 @@ function createBoxTape(){
       "true";
    }
  };
+let dragging = false;
+let offsetX = 0;
+let offsetY = 0;
 
+tape.addEventListener("touchstart",(e)=>{
+
+ dragging = true;
+
+ offsetX =
+ e.touches[0].clientX -
+ tape.offsetLeft;
+
+ offsetY =
+ e.touches[0].clientY -
+ tape.offsetTop;
+
+});
+
+document.addEventListener(
+"touchmove",
+(e)=>{
+
+ if(!dragging) return;
+
+ tape.style.left =
+ (
+ e.touches[0].clientX -
+ offsetX
+ ) + "px";
+
+ tape.style.top =
+ (
+ e.touches[0].clientY -
+ offsetY
+ ) + "px";
+
+}
+);
+
+document.addEventListener(
+"touchend",
+()=>{
+
+ dragging = false;
+
+}
+);
  document.body.appendChild(tape);
+  localStorage.setItem(
+ "lastTapeX",
+ tape.style.left
+);
+
+localStorage.setItem(
+ "lastTapeY",
+ tape.style.top
+);
 }
 </script>
 
