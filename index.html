@@ -192,7 +192,44 @@ document.addEventListener(
  }
 }
 );
+function createBoxTape(){
 
+ const tape =
+ document.createElement("div");
+
+ tape.style.position = "fixed";
+ tape.style.left = "100px";
+ tape.style.top = "200px";
+ tape.style.width = "120px";
+ tape.style.height = "40px";
+ tape.style.background = "black";
+ tape.style.borderRadius = "8px";
+ tape.style.zIndex = "9999";
+
+ tape.dataset.hidden = "true";
+
+ tape.onclick = function(){
+
+   if(this.dataset.hidden==="true"){
+
+      this.style.background =
+      "rgba(0,0,0,0.15)";
+
+      this.dataset.hidden =
+      "false";
+
+   }else{
+
+      this.style.background =
+      "black";
+
+      this.dataset.hidden =
+      "true";
+   }
+ };
+
+ document.body.appendChild(tape);
+}
 </script>
 
 </body>
